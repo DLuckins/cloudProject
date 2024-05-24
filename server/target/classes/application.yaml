@@ -1,0 +1,8 @@
+spring:
+    datasource:
+      url: jdbc:postgresql://dpg-cp7ptbgl6cac73e89is0-a.frankfurt-postgres.render.com/tastydrinkysquish
+      username: tastydrinkysquish_user
+      password: mZRXeN0NwiRvDR51sVwffldGCbzpitMo
+    jpa:
+      hibernate:
+        ddl-auto: update
