@@ -27,7 +27,7 @@ public class UserService {
     }
 
     public boolean addUser(DrinkUser drinkUser) {
-        if (!userRepository.existsUserName(drinkUser.getUserName())) {
+        if (!userRepository.existsByUserName(drinkUser.getUserName())) {
             try {
                 String password = drinkUser.getUserPassword();
                 String encodedPassword = bCryptPasswordEncoder.encode(password);
@@ -45,7 +45,7 @@ public class UserService {
         }
     }
     public boolean addDrink(String name,String drink){
-        if(userRepository.existsUserName(name)){
+        if(userRepository.existsByUserName(name)){
             try {
                 DrinkUser drinkUser = userRepository.findByUserName(name);
                 drinkUser.getDrinks().add(drink);

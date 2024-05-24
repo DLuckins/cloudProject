@@ -43,12 +43,12 @@ class UserServiceTest {
 
     @Test
     void addUserCorrect() {
-        when(userRepository.existsUserName("John")).thenReturn(false);
+        when(userRepository.existsByUserName("John")).thenReturn(false);
         assertTrue(userService.addUser(drinkUser));
     }
     @Test
     void addUserExists() {
-        when(userRepository.existsUserName("John")).thenReturn(true);
+        when(userRepository.existsByUserName("John")).thenReturn(true);
         assertFalse(userService.addUser(drinkUser));
     }
     @Test
