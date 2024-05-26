@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.tastydrinkysquish.drink.entity.DrinkUser;
 import org.tastydrinkysquish.drink.repository.UserRepository;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,7 +30,8 @@ class UserServiceTest {
     private AutoCloseable closeable;
     @BeforeEach
     public void init(){
-        drinkUser=new DrinkUser("John","Doe", Arrays.asList(new String[]{"water"}));
+        List<String> userDrinks=new ArrayList<String>(Arrays.asList("water"));
+        drinkUser=new DrinkUser("John","Doe", userDrinks);
         userService=new UserService(userRepository,bCryptPasswordEncoder);
     }
     @Test
@@ -59,17 +61,10 @@ class UserServiceTest {
 
     @Test
     void addDrink() {
+        when(userRepository.existsByUserName("John")).thenReturn(true);
+        when(userRepository.findByUserName("John")).thenReturn(drinkUser);
+        assertTrue(userService.addDrink("John","wine"));
     }
 
-    @Test
-    void changePassword() {
-    }
 
-    @Test
-    void getLoginUserID() {
-    }
-
-    @Test
-    void getUserNameByID() {
-    }
 }
